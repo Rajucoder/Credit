@@ -8,8 +8,6 @@ node {
 	withCredentials([gitUsernamePassword(credentialsId: 'Raju', gitToolName: 'Default')])  {
 	git branch: 'main', credentialsId: 'Raju', url: 'https://github.com/Rajucoder/HelloWorld.git'
 	latestTag = sh(returnStdout:  true, script: "git describe --tags `git rev-list --tags --max-count=1`")
-	latestTag = "${latestTag}+'-final'"
-	echo ${latestTag}
 	sh """
 		git config --global user.email "rajeshwarinadar721@gmail.com"
 		git config --global user.name "Rajucoder"
@@ -18,7 +16,7 @@ node {
 		git init
 		echo "Creating new Tag"
 		git status
-		git tag -a ${latestTag} -m "Release Candidate"
+		git tag -a `${latestTag}.final` -m "Release Candidate"
         	git push origin ${latestTag}
         	echo "Tag pushed to remote"
 	"""
