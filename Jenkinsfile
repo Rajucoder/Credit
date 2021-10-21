@@ -1,3 +1,4 @@
+script """
 node {
     try {
 	cleanWs()
@@ -5,20 +6,20 @@ node {
 	withCredentials([gitUsernamePassword(credentialsId: 'Raju', gitToolName: 'Default')])  {
 	def versionTag = ""
 	def result = "0.0"
-	sh """
-        git config --global user.email "rajeshwarinadar721@gmail.com"
-        git config --global user.name "Rajucoder"
-        git clone --branch master https://github.com/Rajucoder/Credit.git
-        cd Credit
-	git init
-        echo "Creating new Tag"
-	git status
-	versionTag = ${git describe —-tags 'git rev-list —-tags —-max-count=1'}
-	result = ${versionTag} + "-final"
-	git tag -a \$result -m "Release Candidate"
-	git push origin \$result
-	echo "Tag pushed to remote"
-	"""
+	sh(\"\"\"#!/bin/bash -xl
+		git config --global user.email "rajeshwarinadar721@gmail.com"
+		git config --global user.name "Rajucoder"
+		git clone --branch master https://github.com/Rajucoder/Credit.git
+		cd Credit
+		git init
+		echo "Creating new Tag"
+		git status
+		versionTag = ${git describe —-tags 'git rev-list —-tags —-max-count=1'}
+		result = ${versionTag} + "-final"
+		git tag -a \$result -m "Release Candidate"
+		git push origin \$result
+		echo "Tag pushed to remote"
+	\"\"\".stripIndent())
         //sh 'git tag -a release-1 -m "Release Candidate"'
         //sh 'git push origin release-1'
         //sh 'echo "Tag pushed to remote"'
@@ -34,3 +35,4 @@ node {
         throw err
     }
 } 
+"""
