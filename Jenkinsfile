@@ -6,7 +6,7 @@ node {
 	def versionTag = ""
 	def result = "0.0"
 	def hash = ""
-	sh """
+	script{
 		git config --global user.email "rajeshwarinadar721@gmail.com"
 		git config --global user.name "Rajucoder"
 		git clone --branch master https://github.com/Rajucoder/Credit.git
@@ -14,9 +14,8 @@ node {
 		git init
 		echo "Creating new Tag"
 		git status
-		git describe --tags `git rev-list --tags --max-count=1` > version.tmp
-		versionTag = readFile 'version.tmp'
-	"""
+		gitTag=sh(returnStdout: true, script: "git tag --contains | head -1").trim()
+	}
 	
 	echo ${version}
         //sh 'git tag -a release-1 -m "Release Candidate"'
