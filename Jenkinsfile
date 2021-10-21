@@ -6,6 +6,7 @@ node {
 	def versionTag = "release-2"
 	def result = "0.0"
 	def hash = ""
+	def latestTag = sh(returnStdout:  true, script: "git describe --tags `git rev-list --tags --max-count=1`")
 	sh """
 		git config --global user.email "rajeshwarinadar721@gmail.com"
 		git config --global user.name "Rajucoder"
@@ -14,11 +15,13 @@ node {
 		git init
 		echo "Creating new Tag"
 		git status
-		git describe --tags `git rev-list --tags --max-count=1`>version.txt
+		git tag -a /$latestTag -m "Release Candidate"
+        	git push origin /$latestTag
+        	echo "Tag pushed to remote"
 	"""
-	env.WORKSPACE = pwd()
-	def version = readFile "${env.WORKSPACE}/version.txt"
-	echo ${version}
+	//env.WORKSPACE = pwd()
+	//def version = readFile "${env.WORKSPACE}/version.txt"
+	//echo ${version}
         //sh 'git tag -a release-1 -m "Release Candidate"'
         //sh 'git push origin release-1'
         //sh 'echo "Tag pushed to remote"'
