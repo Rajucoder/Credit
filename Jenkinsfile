@@ -1,14 +1,15 @@
 node {
     try {
 	cleanWs()
+	environment{  
+		String result="0.0.0"
+	}
         stage ('Clone') {
 	withCredentials([gitUsernamePassword(credentialsId: 'Raju', gitToolName: 'Default')])  {
-	def versionTag = "release-2"
-	def result = "0.0"
-	def hash = ""
 	git branch: 'main', credentialsId: 'Raju', url: 'https://github.com/Rajucoder/HelloWorld.git'
-	env.latestTag = sh(returnStdout:  true, script: "git describe --tags `git rev-list --tags --max-count=1`")
-	env.latestTag = ${env.latestTag}+"-final"
+	latestTag = sh(returnStdout:  true, script: "git describe --tags `git rev-list --tags --max-count=1`")
+	echo "${latestTag}+'-final'">outfile
+	result = readFile 'outfile'
 	sh """
 		git config --global user.email "rajeshwarinadar721@gmail.com"
 		git config --global user.name "Rajucoder"
@@ -17,8 +18,8 @@ node {
 		git init
 		echo "Creating new Tag"
 		git status
-		git tag -a ${env.latestTag} -m "Release Candidate"
-        	git push origin ${env.latestTag}
+		git tag -a ${result} -m "Release Candidate"
+        	git push origin ${result}
         	echo "Tag pushed to remote"
 	"""
 	//env.WORKSPACE = pwd()
