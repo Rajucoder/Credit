@@ -11,7 +11,11 @@ node {
 	git init
         echo "Creating new Tag"
 	git status
-	git describe --tags `git rev-list --tags --max-count=1`
+	def versionTag=\$(git describe — tags `git rev-list — tags — max-count=1`)
+	def result=\$versionTag+"-final"
+	git tag -a \$result -m "Release Candidate"
+	git push origin \$result
+	echo "Tag pushed to remote"
 	"""
         //sh 'git tag -a release-1 -m "Release Candidate"'
         //sh 'git push origin release-1'
