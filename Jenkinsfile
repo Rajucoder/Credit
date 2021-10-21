@@ -7,7 +7,7 @@ node {
         stage ('Clone') {
 	withCredentials([gitUsernamePassword(credentialsId: 'Raju', gitToolName: 'Default')])  {
 	git branch: 'master', credentialsId: 'Raju', url: 'https://github.com/Rajucoder/Credit.git'
-	latestTag = "12.3-"+sh(returnStdout:  true, script: "git describe --tags `git rev-list --tags --max-count=1`").trim()+"-final"
+	latestTag = "12.4-"+sh(returnStdout:  true, script: "git describe --tags `git rev-list --tags --max-count=1`").trim()+"-final"
 	sh """
 		git config --global user.email "rajeshwarinadar721@gmail.com"
 		git config --global user.name "Rajucoder"
