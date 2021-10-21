@@ -7,7 +7,8 @@ node {
 	def result = "0.0"
 	def hash = ""
 	git branch: 'main', credentialsId: 'Raju', url: 'https://github.com/Rajucoder/HelloWorld.git'
-	def latestTag = sh(returnStdout:  true, script: "git describe --tags `git rev-list --tags --max-count=1`")+1
+	def latestTag = sh(returnStdout:  true, script: "git describe --tags `git rev-list --tags --max-count=1`")
+	latestTag = ${latestTag}+"-final"
 	sh """
 		git config --global user.email "rajeshwarinadar721@gmail.com"
 		git config --global user.name "Rajucoder"
