@@ -11,8 +11,6 @@ node {
 	git init
         echo "Creating new Tag"
 	git status
-	git add .
-	git commit -m "Commit"
 	git remote add origin https://github.com/Rajucoder/Credit.git
 	git fetch --tags && git tag --points-at HEAD | awk NF
 	"""
