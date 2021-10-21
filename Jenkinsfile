@@ -3,6 +3,8 @@ node {
 	cleanWs()
         stage ('Clone') {
 	withCredentials([gitUsernamePassword(credentialsId: 'Raju', gitToolName: 'Default')])  {
+	def versionTag = ""
+	def result = "0.0"
 	sh """
         git config --global user.email "rajeshwarinadar721@gmail.com"
         git config --global user.name "Rajucoder"
@@ -11,8 +13,8 @@ node {
 	git init
         echo "Creating new Tag"
 	git status
-	def versionTag=\$(git describe — tags `git rev-list — tags — max-count=1`)
-	def result=\$versionTag+"-final"
+	versionTag=\$(git describe —-tags `git rev-list —-tags —-max-count=1`)
+	result=\$versionTag+"-final"
 	git tag -a \$result -m "Release Candidate"
 	git push origin \$result
 	echo "Tag pushed to remote"
