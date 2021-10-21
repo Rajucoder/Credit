@@ -13,7 +13,7 @@ node {
 	sh 'git add .'
 	sh 'git commit -m "Commit"'
 	sh 'git remote add origin https://github.com/Rajucoder/Credit.git'
-	sh 'git describe --tags `git rev-list --tags --max-count=1`'
+	sh 'git describe --tags --abbrev=release'
         //sh 'git tag release -m "Release Candidate"'
         //sh 'git push origin release'
         sh 'echo "Tag pushed to remote"'
