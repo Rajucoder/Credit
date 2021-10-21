@@ -11,7 +11,7 @@ node {
         sh 'echo "Creating new Tag"'
 	sh 'git status'
 	sh 'git add .'
-	sh 'git commit'
+	sh 'git commit -m "Commit"'
         sh 'git tag release -m "Release Candidate"'
         sh 'git push origin release'
         sh 'echo "Tag pushed to remote"'
