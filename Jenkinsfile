@@ -16,7 +16,6 @@ node {
 		git init
 		echo "Creating new Tag"
 		git status
-		git commit -m "initial commit"
 		git tag -a '${latestTag}' -m "Release Candidate"
         	git push origin '${latestTag}'
         	echo "Tag pushed to remote"
