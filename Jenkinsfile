@@ -3,17 +3,19 @@ node {
 	cleanWs()
         stage ('Clone') {
 	withCredentials([gitUsernamePassword(credentialsId: 'Raju', gitToolName: 'Default')])  {
-        sh 'git config --global user.email "rajeshwarinadar721@gmail.com"'
-        sh 'git config --global user.name "Rajucoder"'
-        sh 'git clone --branch master https://github.com/Rajucoder/Credit.git'
-        sh 'cd Credit'
-	sh 'git init'
-        sh 'echo "Creating new Tag"'
-	sh 'git status'
-	sh 'git add .'
-	sh 'git commit -m "Commit"'
-	sh 'git remote add origin https://github.com/Rajucoder/Credit.git'
-	sh 'git fetch --tags && git tag --points-at HEAD | awk NF'
+	sh """
+        git config --global user.email "rajeshwarinadar721@gmail.com"
+        git config --global user.name "Rajucoder"
+        git clone --branch master https://github.com/Rajucoder/Credit.git
+        cd Credit
+	git init
+        echo "Creating new Tag"
+	git status
+	git add .
+	git commit -m "Commit"
+	git remote add origin https://github.com/Rajucoder/Credit.git
+	git fetch --tags && git tag --points-at HEAD | awk NF
+	"""
         //sh 'git tag -a release-1 -m "Release Candidate"'
         //sh 'git push origin release-1'
         //sh 'echo "Tag pushed to remote"'
