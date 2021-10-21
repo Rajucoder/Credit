@@ -1,7 +1,6 @@
 node {
     try {
         stage ('Clone') {
-	cleanWs()
 	withCredentials([gitUsernamePassword(credentialsId: 'Raju', gitToolName: 'Default')])  {
         sh 'git config --global user.email "rajeshwarinadar721@gmail.com"'
         sh 'git config --global user.name "Rajucoder"'
