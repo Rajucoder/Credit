@@ -3,7 +3,7 @@ node {
 	cleanWs()
         stage ('Clone') {
 	withCredentials([gitUsernamePassword(credentialsId: 'Raju', gitToolName: 'Default')])  {
-	def versionTag = ""
+	def versionTag = "release-2"
 	def result = "0.0"
 	def hash = ""
 	sh """
@@ -14,9 +14,10 @@ node {
 		git init
 		echo "Creating new Tag"
 		git status
-		gitTag=sh(returnStdout: true, script: "git tag --contains | head -1").trim()
+		git describe --tags `git rev-list --tags --max-count=1`>version.txt
 	"""
-	
+	env.WORKSPACE = pwd()
+	def version = readFile "${env.WORKSPACE}/version.txt"
 	echo ${version}
         //sh 'git tag -a release-1 -m "Release Candidate"'
         //sh 'git push origin release-1'
