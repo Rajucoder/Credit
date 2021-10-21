@@ -11,7 +11,6 @@ node {
 	git init
         echo "Creating new Tag"
 	git status
-	git remote add origin https://github.com/Rajucoder/Credit.git
 	git fetch --tags && git tag --points-at HEAD | awk NF
 	"""
         //sh 'git tag -a release-1 -m "Release Candidate"'
