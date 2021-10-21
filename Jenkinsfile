@@ -14,8 +14,10 @@ node {
 		git init
 		echo "Creating new Tag"
 		git status
+		git describe --tags `git rev-list --tags --max-count=1` > version.tmp
 	"""
-	latestTag = sh(returnStdout:  true, script: "git tag --sort=-creatordate | head -n 1").trim()
+	String version = readFile 'version.tmp'
+	echo ${version}
         //sh 'git tag -a release-1 -m "Release Candidate"'
         //sh 'git push origin release-1'
         //sh 'echo "Tag pushed to remote"'
