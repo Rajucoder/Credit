@@ -8,7 +8,7 @@ node {
         sh 'git clone --branch master https://github.com/Rajucoder/Credit.git'
         sh 'cd Credit'
         sh 'echo "Creating new Tag"'
-        sh 'git tag -a release -m "Release Candidate"'
+        sh 'git tag release'
         sh 'git push origin release'
         sh 'echo "Tag pushed to remote"'
 	}
