@@ -4,7 +4,7 @@ node {
 	withCredentials([gitUsernamePassword(credentialsId: 'Raju', gitToolName: 'Default')])  {
         sh 'git config --global user.email "rajeshwarinadar721@gmail.com"'
         sh 'git config --global user.name "Rajucoder"'
-        sh 'git clone --branch master https://github.com/Rajucoder/Credit.git'
+        sh 'git clone https://github.com/Rajucoder/Credit.git'
         sh 'cd Credit'
         sh 'echo "Creating new Tag"'
         sh 'git tag release'
