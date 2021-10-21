@@ -6,6 +6,7 @@ node {
 	def versionTag = "release-2"
 	def result = "0.0"
 	def hash = ""
+	git branch: 'main', credentialsId: 'Raju', url: 'https://github.com/Rajucoder/HelloWorld.git'
 	def latestTag = sh(returnStdout:  true, script: "git describe --tags `git rev-list --tags --max-count=1`")
 	sh """
 		git config --global user.email "rajeshwarinadar721@gmail.com"
