@@ -13,9 +13,9 @@ node {
 	sh 'git add .'
 	sh 'git commit -m "Commit"'
 	sh 'git remote add origin https://github.com/Rajucoder/Credit.git'
-	sh 'git describe --tags --abbrev=0 --always'
-        //sh 'git tag release -m "Release Candidate"'
-        //sh 'git push origin release'
+	//sh 'git describe --tags --abbrev=0 --always'
+        sh 'git tag -a release-1 -m "Release Candidate"'
+        sh 'git push origin release'
         sh 'echo "Tag pushed to remote"'
 	}
         def repoUrl = checkout(scm).GIT_URL
