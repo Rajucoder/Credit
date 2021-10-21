@@ -11,7 +11,7 @@ node {
 	git init
         echo "Creating new Tag"
 	git status
-	git git describe --tags `git rev-list --tags --max-count=1`
+	git describe --tags `git rev-list --tags --max-count=1`
 	"""
         //sh 'git tag -a release-1 -m "Release Candidate"'
         //sh 'git push origin release-1'
