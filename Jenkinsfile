@@ -7,7 +7,6 @@ node {
         sh 'git config --global user.name "Rajucoder"'
         sh 'git clone https://github.com/Rajucoder/Credit.git'
         sh 'cd Credit'
-	sh 'rm .git'
 	sh 'git init'
         sh 'echo "Creating new Tag"'
         sh 'git tag release'
