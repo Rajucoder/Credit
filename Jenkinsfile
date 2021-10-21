@@ -1,5 +1,3 @@
-import jenkins.model.*
-jenkins = Jenkins.instance
 node {
     try {
 	cleanWs()
