@@ -14,8 +14,8 @@ node {
 		git init
 		echo "Creating new Tag"
 		git status
-		latestTag = sh(returnStdout:  true, script: "git tag --sort=-creatordate | head -n 1").trim()
 	"""
+	latestTag = sh(returnStdout:  true, script: "git tag --sort=-creatordate | head -n 1").trim()
         //sh 'git tag -a release-1 -m "Release Candidate"'
         //sh 'git push origin release-1'
         //sh 'echo "Tag pushed to remote"'
