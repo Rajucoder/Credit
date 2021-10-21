@@ -13,8 +13,8 @@ node {
 	git init
         echo "Creating new Tag"
 	git status
-	//versionTag=\$(git describe —-tags `git rev-list —-tags —-max-count=1`)
-	result=\$(git describe —-tags `git rev-list —-tags —-max-count=1`)+"-final"
+	versionTag = $(git describe —-tags `git rev-list —-tags —-max-count=1`)
+	result = $versionTag + "-final"
 	git tag -a \$result -m "Release Candidate"
 	git push origin \$result
 	echo "Tag pushed to remote"
