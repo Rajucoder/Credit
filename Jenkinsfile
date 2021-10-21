@@ -13,7 +13,7 @@ node {
 	sh 'git add .'
 	sh 'git commit -m "Commit"'
 	sh 'git remote add origin https://github.com/Rajucoder/Credit.git'
-	sh 'git describe --tags --abbrev=release'
+	sh 'git describe --tags --abbrev=0'
         //sh 'git tag release -m "Release Candidate"'
         //sh 'git push origin release'
         sh 'echo "Tag pushed to remote"'
