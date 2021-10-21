@@ -15,8 +15,9 @@ node {
 		echo "Creating new Tag"
 		git status
 		git describe --tags `git rev-list --tags --max-count=1` > version.tmp
+		versionTag = readFile 'version.tmp'
 	"""
-	String version = readFile 'version.tmp'
+	
 	echo ${version}
         //sh 'git tag -a release-1 -m "Release Candidate"'
         //sh 'git push origin release-1'
