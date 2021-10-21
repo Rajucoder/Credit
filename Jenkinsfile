@@ -10,6 +10,8 @@ node {
 	sh 'git init'
         sh 'echo "Creating new Tag"'
 	sh 'git status'
+	sh 'git add .'
+	sh 'git commit'
         sh 'git tag release -m "Release Candidate"'
         sh 'git push origin release'
         sh 'echo "Tag pushed to remote"'
