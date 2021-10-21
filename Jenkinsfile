@@ -1,10 +1,13 @@
 node {
     try {
+	cleanWs()
         stage ('Clone') {
 	withCredentials([gitUsernamePassword(credentialsId: 'Raju', gitToolName: 'Default')])  {
         sh 'git config --global user.email "rajeshwarinadar721@gmail.com"'
         sh 'git config --global user.name "Rajucoder"'
         sh 'git clone https://github.com/Rajucoder/Credit.git'
+	sh 'rm .git'
+	sh 'git init'
         sh 'cd Credit'
         sh 'echo "Creating new Tag"'
         sh 'git tag release'
