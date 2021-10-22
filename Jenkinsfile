@@ -1,9 +1,6 @@
 node {
     try {
 	cleanWs()
-	environment{  
-		String result="0.0.0"
-	}
         stage ('Clone') {
 	withCredentials([gitUsernamePassword(credentialsId: 'Raju', gitToolName: 'Default')])  {
 	git branch: 'master', credentialsId: 'Raju', url: 'https://github.com/Rajucoder/Credit.git'
@@ -24,18 +21,7 @@ node {
         	git push origin '${latestTag}'
         	echo "Tag pushed to remote"
 	"""
-	//env.WORKSPACE = pwd()
-	//def version = readFile "${env.WORKSPACE}/version.txt"
-	//echo ${version}
-        //sh 'git tag -a release-1 -m "Release Candidate"'
-        //sh 'git push origin release-1'
-        //sh 'echo "Tag pushed to remote"'
-	}
-        def repoUrl = checkout(scm).GIT_URL
-	def key = repoUrl.tokenize('/')[3]
-	def slug = repoUrl.tokenize('/')[4]
-	echo "The projectKey is: ${key}"
-	echo "The repositorySlug is: ${slug}" 
+		//Hello
         }
     } catch (err) {
         currentBuild.result = 'FAILED'
