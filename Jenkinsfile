@@ -23,6 +23,7 @@ node {
 	"""
 		//Hello
         }
+}
     } catch (err) {
         currentBuild.result = 'FAILED'
         throw err
