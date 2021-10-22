@@ -17,6 +17,7 @@ node {
 		git init
 		echo "creating new Tag for previous version"
 		git tag -a '${previousTag}-final' `git rev-list -n 1 '${previousTag}'` -m "Retagging the older commit"
+		git push origin '${previousTag}-final'
 		echo "Creating new Tag for latest version"
 		git status
 		git tag -a '${latestTag}' -m "Release of new Version"
