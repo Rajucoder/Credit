@@ -8,16 +8,15 @@ node {
 	latestTag = sh(returnStdout:  true, script: "git describe --tags `git rev-list --tags --max-count=1`").trim()+"-init"
 	merge = MERGED
 	sha = GIT_SHA
-	
+	tag = previousTag.split("-")[0]
 	sh """
-		IFS='-' read -r -a array <<< "${previousTag}"
 		git config --global user.email "rajeshwarinadar721@gmail.com"
 		git config --global user.name "Rajucoder"
 		git clone --branch master https://github.com/Rajucoder/Credit.git
 		cd Credit
 		if [ ${merge} == false ] ; then
 			echo "creating new Tag for previous version"
-			git tag -a '${array[0]}-${GIT_BRANCH}-final' `git rev-list -n 1 '${previousTag}'` -m "Retagging the older commit"
+			git tag -a '${tag}-${GIT_BRANCH}-final' `git rev-list -n 1 '${previousTag}'` -m "Retagging the older commit"
 			git push origin '${previousTag}-final'
 		fi
 		echo "Creating new Tag for latest version"
