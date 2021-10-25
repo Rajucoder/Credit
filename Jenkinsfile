@@ -6,6 +6,8 @@ node {
 	git branch: 'master', credentialsId: 'Raju', url: 'https://github.com/Rajucoder/Credit.git'
 	previousTag = sh(returnStdout:  true, script: "git describe --tags `git rev-list --tags --max-count=1`").trim()
 	latestTag = sh(returnStdout:  true, script: "git describe --tags `git rev-list --tags --max-count=1`").trim()+"-init"
+	merge = MERGED.toBoolean()
+	echo merge
 	echo VERSION
 	sh """
 		git config --global user.email "rajeshwarinadar721@gmail.com"
@@ -18,7 +20,7 @@ node {
 		git push origin '${previousTag}-final'
 		echo "Creating new Tag for latest version"
 		git status
-		if[MERGED == true]; then
+		if[ ${merge} == true ] ; then
 			git tag -a '${latestTag}' -m "Release of new Version"
 			git push origin '${latestTag}'
 			echo "Tag pushed to remote"
