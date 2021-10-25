@@ -6,7 +6,7 @@ node {
 	git branch: 'master', credentialsId: 'Raju', url: 'https://github.com/Rajucoder/Credit.git'
 	previousTag = sh(returnStdout:  true, script: "git describe --tags `git rev-list --tags --max-count=1`").trim()
 	latestTag = sh(returnStdout:  true, script: "git describe --tags `git rev-list --tags --max-count=1`").trim()+"-init"
-	boolean merge = MERGED.toBoolean()
+	merge = MERGED
 	echo merge
 	echo VERSION
 	sh """
