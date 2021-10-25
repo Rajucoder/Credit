@@ -7,20 +7,21 @@ node {
 	previousTag = sh(returnStdout:  true, script: "git describe --tags `git rev-list --tags --max-count=1`").trim()
 	latestTag = sh(returnStdout:  true, script: "git describe --tags `git rev-list --tags --max-count=1`").trim()+"-init"
 	merge = MERGED
-	echo merge
-	echo VERSION
+	sha = GIT_SHA
 	sh """
 		git config --global user.email "rajeshwarinadar721@gmail.com"
 		git config --global user.name "Rajucoder"
 		git clone --branch master https://github.com/Rajucoder/Credit.git
 		cd Credit
-		git init
-		echo "creating new Tag for previous version"
-		git tag -a '${previousTag}-final' `git rev-list -n 1 '${previousTag}'` -m "Retagging the older commit"
-		git push origin '${previousTag}-final'
+		if [ ${merge} == false ] ; then
+			echo "creating new Tag for previous version"
+			git tag -a '${previousTag}-final' ${sha} -m "Retagging the older commit"
+			git push origin '${previousTag}-final'
+		fi
 		echo "Creating new Tag for latest version"
 		git status
 		if [ ${merge} == true ] ; then
+			echo "creating new Tag for latest Version"
 			git tag -a '${latestTag}' -m "Release of new Version"
 			git push origin '${latestTag}'
 			echo "Tag pushed to remote"
