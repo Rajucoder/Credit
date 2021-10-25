@@ -6,6 +6,7 @@ node {
 	git branch: 'master', credentialsId: 'Raju', url: 'https://github.com/Rajucoder/Credit.git'
 	previousTag = sh(returnStdout:  true, script: "git describe --tags `git rev-list --tags --max-count=1`").trim()
 	latestTag = sh(returnStdout:  true, script: "git describe --tags `git rev-list --tags --max-count=1`").trim()+"-init"
+	echo VERSION
 	sh """
 		git config --global user.email "rajeshwarinadar721@gmail.com"
 		git config --global user.name "Rajucoder"
