@@ -17,7 +17,7 @@ node {
 		if [ ${merge} == false ] ; then
 			echo "creating new Tag for previous version"
 			git tag -a '${tag}-${GIT_BRANCH}-final' `git rev-list -n 1 '${previousTag}'` -m "Retagging the older commit"
-			git push origin '${previousTag}-final'
+			git push origin '${tag}-${GIT_BRANCH}-final'
 		fi
 		echo "Creating new Tag for latest version"
 		git status
