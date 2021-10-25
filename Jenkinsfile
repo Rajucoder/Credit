@@ -20,7 +20,7 @@ node {
 		git push origin '${previousTag}-final'
 		echo "Creating new Tag for latest version"
 		git status
-		if[ ${merge} == true ] ; then
+		if [ ${merge} == true ] ; then
 			git tag -a '${latestTag}' -m "Release of new Version"
 			git push origin '${latestTag}'
 			echo "Tag pushed to remote"
